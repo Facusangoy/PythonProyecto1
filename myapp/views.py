@@ -1,6 +1,10 @@
 from django.shortcuts import render
+from .models import Post
 
-# Create your views here.
 def index(request):
-    context = {"mensaje": "Bienvenidos a mi aplicacion hecha en Django"}
-    return render(request, "myapp/index.html", context)
+    posts = Post.objects.all()
+    return render(request, 'AppBlog/index.html', {'posts': posts})
+
+def detalle_post(request, id):
+    post = Post.objects.get(pk=id)
+    return render(request, 'AppBlog/detalle_post.html', {'post': post})
