@@ -1,25 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Django App</title>
-</head>
-<body>
-    <h1>Hola Django!</h1>
-    <p>{{ mensaje }}</p>
-</body>
-</html>
+{% extends 'myapp/base.html' %}
 
-{% extends "base.html" %}
+{% block title %}
+    Inicio
+{% endblock title %}
 
-{% block title %}Inicio - Blog{% endblock %}
+{% block content_title %}
+    Blog sobre Python
+{% endblock content_title %}
 
 {% block content %}
-<h2>Bienvenido al Blog</h2>
-<ul>
-    {% for post in posts %}
-    <li><a href="{% url 'detalle_post' post.id %}">{{ post.titulo }}</a></li>
-    {% endfor %}
-</ul>
-{% endblock %}
+<div class="d-flex justify-content-center mt-5">
+    <a href="{% url 'blog:post_list' %}" class="btn btn-primary btn-lg">
+        Ingresar
+    </a>
+</div>
+{% endblock content %}
